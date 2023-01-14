@@ -43,13 +43,20 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails", "2.1.2"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
 # Flexible authentication for Rails
 gem 'devise', "4.8.1"
+
+# Provides a set of helpers which guide you in leveraging regular Ruby classes and object oriented design patterns
+# to build a simple, robust and scalable authorization system
+gem 'pundit', "2.3.0"
+
+# Framework for creating administration
+gem 'activeadmin', "2.13.1"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
