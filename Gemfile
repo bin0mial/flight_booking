@@ -43,19 +43,42 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails", "2.1.2"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+# Flexible authentication for Rails
+gem 'devise', "4.8.1"
+
+# Provides a set of helpers which guide you in leveraging regular Ruby classes and object oriented design patterns
+# to build a simple, robust and scalable authorization system
+gem 'pundit', "2.3.0"
+
+# Framework for creating administration
+gem 'activeadmin', "2.13.1"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  # Add a comment summarizing the current schema
+  gem 'annotate', "3.2.0"
+  # Testing framework to Ruby on Rails
+  gem 'rspec-rails', '~> 6.0.0'
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+
+  gem 'rubocop-rails', '2.17.4', require: false
+  gem 'rubocop-performance', '1.15.2', require: false
+  gem 'overcommit', '0.59.1'
+  gem 'rails_best_practices', '1.23.2'
+  gem 'flay', '2.13.0'
+
+  # Gives letter_opener an interface for browsing sent emails
+  gem 'letter_opener_web', '~> 2.0'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
