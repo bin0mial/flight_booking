@@ -117,6 +117,11 @@ GEM
     erubi (1.12.0)
     erubis (2.7.0)
     ffi (1.15.5)
+    flay (2.13.0)
+      erubi (~> 1.10)
+      path_expander (~> 1.0)
+      ruby_parser (~> 3.0)
+      sexp_processor (~> 4.0)
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
     formtastic_i18n (0.7.0)
@@ -159,6 +164,15 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    launchy (2.5.2)
+      addressable (~> 2.8)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
+    letter_opener_web (2.0.0)
+      actionmailer (>= 5.2)
+      letter_opener (~> 1.7)
+      railties (>= 5.2)
+      rexml
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -193,6 +207,7 @@ GEM
     parallel (1.22.1)
     parser (3.2.0.0)
       ast (~> 2.4.1)
+    path_expander (1.1.1)
     public_suffix (5.0.1)
     puma (5.6.5)
       nio4r (~> 2.0)
@@ -288,6 +303,8 @@ GEM
       rubocop (>= 1.33.0, < 2.0)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
+    ruby_parser (3.19.2)
+      sexp_processor (~> 4.16)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -351,8 +368,10 @@ DEPENDENCIES
   capybara
   debug
   devise (= 4.8.1)
+  flay (= 2.13.0)
   importmap-rails
   jbuilder
+  letter_opener_web (~> 2.0)
   overcommit (= 0.59.1)
   puma (~> 5.0)
   pundit (= 2.3.0)
