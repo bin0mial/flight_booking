@@ -75,6 +75,10 @@ group :development do
   gem 'rubocop-performance', '1.15.2', require: false
   gem 'overcommit', '0.59.1'
   gem 'rails_best_practices', '1.23.2'
+  gem 'flay', '2.13.0'
+
+  # Gives letter_opener an interface for browsing sent emails
+  gem 'letter_opener_web', '~> 2.0'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
