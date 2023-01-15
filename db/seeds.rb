@@ -5,4 +5,12 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+
+if Rails.env.development?
+  AdminUser.first_or_create(email: 'admin@example.com', confirmed_at: Time.current,
+                            password: 'password', password_confirmation: 'password')
+end
+
+["First Class", "Business Class", "Economy Class"].each do |aeroplane_class_name|
+  AeroplaneClass.find_or_create_by(name: aeroplane_class_name)
+end
