@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_14_171132) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_14_233039) do
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -31,6 +31,32 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_14_171132) do
     t.index ["confirmation_token"], name: "index_admin_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "aeroplane_class_seats", force: :cascade do |t|
+    t.integer "aeroplane_id", null: false
+    t.integer "aeroplane_class_id", null: false
+    t.integer "row_seats", null: false
+    t.integer "row_numbers", null: false
+    t.float "price", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["aeroplane_class_id"], name: "index_aeroplane_class_seats_on_aeroplane_class_id"
+    t.index ["aeroplane_id", "aeroplane_class_id"], name: "index_aeroplane_class_seats_on_aeroplane_and_aeroplane_class", unique: true
+    t.index ["aeroplane_id"], name: "index_aeroplane_class_seats_on_aeroplane_id"
+  end
+
+  create_table "aeroplane_classes", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "aeroplanes", force: :cascade do |t|
+    t.string "aeroplane_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["aeroplane_type"], name: "index_aeroplanes_on_aeroplane_type", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,4 +81,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_14_171132) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "aeroplane_class_seats", "aeroplane_classes"
+  add_foreign_key "aeroplane_class_seats", "aeroplanes"
 end
