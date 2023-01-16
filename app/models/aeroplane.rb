@@ -14,6 +14,8 @@
 class Aeroplane < ApplicationRecord
   has_many :aeroplane_class_seats
   has_many :aeroplane_classes, through: :aeroplane_class_seats
+  has_many :flights
+  has_many :pnrs, through: :flights
 
   alias_attribute :name, :aeroplane_type
 end

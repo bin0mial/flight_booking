@@ -10,4 +10,5 @@
 class AeroplaneClass < ApplicationRecord
   has_many :aeroplane_class_seats
   has_many :aeroplanes, through: :aeroplane_class_seats
+  has_many :pnrs
 end

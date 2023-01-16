@@ -32,4 +32,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :trackable, :confirmable
+
+  has_many :reservations
+  has_many :pnrs, through: :reservations
+  has_many :flights, through: :pnrs
+
+  alias_attribute :name, :email
 end
