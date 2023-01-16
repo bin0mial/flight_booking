@@ -21,10 +21,14 @@
 #  flight_id           (flight_id => flights.id)
 #
 class Pnr < ApplicationRecord
+  # Associations
   belongs_to :flight
   belongs_to :aeroplane_class
   has_one :reservation, dependent: :destroy
   has_one :user, through: :reservation
+
+  # Scopes
+  scope :available, -> { where reservations: nil }
 
   alias_attribute :name, :pnr
 end

@@ -7,6 +7,10 @@ class ActiveAdmin::UserPolicy < ActiveAdmin::DefaultPolicy
     true
   end
 
+  def create?
+    true
+  end
+
   def update?
     true
   end
