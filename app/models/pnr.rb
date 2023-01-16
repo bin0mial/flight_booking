@@ -25,4 +25,6 @@ class Pnr < ApplicationRecord
   belongs_to :aeroplane_class
   has_one :reservation, dependent: :destroy
   has_one :user, through: :reservation
+
+  alias_attribute :name, :pnr
 end

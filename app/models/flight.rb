@@ -29,4 +29,8 @@ class Flight < ApplicationRecord
   def create_pnrs
     ::Pnrs::CreatePnrService.new(self).call
   end
+
+  def name
+    "#{aeroplane.name}_#{origin}_#{destination}"
+  end
 end
