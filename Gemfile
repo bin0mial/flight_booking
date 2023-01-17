@@ -58,6 +58,8 @@ gem 'pundit', "2.3.0"
 # Framework for creating administration
 gem 'activeadmin', "2.13.1"
 
+gem 'sidekiq', "7.0.3"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   # Add a comment summarizing the current schema
