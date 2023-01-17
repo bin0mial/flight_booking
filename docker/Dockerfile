@@ -38,3 +38,5 @@ COPY --chown=${APP_USER} ../Gemfile .
 COPY --chown=${APP_USER} ../Gemfile.lock .
 
 COPY --chown=${APP_USER} .. .
+
+RUN bundle install
