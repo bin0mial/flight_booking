@@ -26,8 +26,11 @@ class Flight < ApplicationRecord
 
   after_create :create_pnrs
 
+  # Delegations
+  delegate :available, to: :pnrs, prefix: true
+
   def create_pnrs
-    ::Pnrs::CreatePnrService.new(self).call
+    CreateFlightPnrsJob.perform_later self
   end
 
   def name
