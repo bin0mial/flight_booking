@@ -22,4 +22,16 @@
 class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :pnr
+
+  validate :check_pnr_not_taken, on: :create
+
+  before_create :add_price_to_reservation
+
+  def check_pnr_not_taken
+    errors.add(:pnr, :taken) if pnr.user.present?
+  end
+
+  def add_price_to_reservation
+    self.price = pnr.aeroplane_class_seat_price
+  end
 end
