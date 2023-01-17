@@ -2,13 +2,13 @@
 #
 # Table name: pnrs
 #
-#  id                      :integer          not null, primary key
+#  id                      :bigint           not null, primary key
 #  pnr                     :string           not null
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
-#  aeroplane_class_id      :integer          not null
-#  aeroplane_class_seat_id :integer          not null
-#  flight_id               :integer          not null
+#  aeroplane_class_id      :bigint           not null
+#  aeroplane_class_seat_id :bigint           not null
+#  flight_id               :bigint           not null
 #
 # Indexes
 #
@@ -19,9 +19,9 @@
 #
 # Foreign Keys
 #
-#  aeroplane_class_id       (aeroplane_class_id => aeroplane_classes.id)
-#  aeroplane_class_seat_id  (aeroplane_class_seat_id => aeroplane_class_seats.id)
-#  flight_id                (flight_id => flights.id)
+#  fk_rails_...  (aeroplane_class_id => aeroplane_classes.id)
+#  fk_rails_...  (aeroplane_class_seat_id => aeroplane_class_seats.id)
+#  fk_rails_...  (flight_id => flights.id)
 #
 class Pnr < ApplicationRecord
   # Associations

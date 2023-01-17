@@ -2,13 +2,13 @@
 #
 # Table name: flights
 #
-#  id           :integer          not null, primary key
+#  id           :bigint           not null, primary key
 #  at           :datetime         not null
 #  destination  :string           not null
 #  origin       :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  aeroplane_id :integer          not null
+#  aeroplane_id :bigint           not null
 #
 # Indexes
 #
@@ -16,7 +16,7 @@
 #
 # Foreign Keys
 #
-#  aeroplane_id  (aeroplane_id => aeroplanes.id)
+#  fk_rails_...  (aeroplane_id => aeroplanes.id)
 #
 require 'rails_helper'
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_17_182924) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_17_205551) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,19 +66,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_182924) do
     t.string "origin", null: false
     t.string "destination", null: false
     t.datetime "at", null: false
-    t.integer "aeroplane_id", null: false
+    t.bigint "aeroplane_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["aeroplane_id"], name: "index_flights_on_aeroplane_id"
   end
 
   create_table "pnrs", force: :cascade do |t|
-    t.integer "flight_id", null: false
-    t.integer "aeroplane_class_id", null: false
+    t.bigint "flight_id", null: false
+    t.bigint "aeroplane_class_id", null: false
     t.string "pnr", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "aeroplane_class_seat_id", null: false
+    t.bigint "aeroplane_class_seat_id", null: false
     t.index ["aeroplane_class_id"], name: "index_pnrs_on_aeroplane_class_id"
     t.index ["aeroplane_class_seat_id"], name: "index_pnrs_on_aeroplane_class_seat_id"
     t.index ["flight_id", "pnr"], name: "index_pnrs_on_flight_id_and_pnr", unique: true
@@ -86,8 +86,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_182924) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "pnr_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "pnr_id", null: false
     t.float "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

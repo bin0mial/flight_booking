@@ -2,12 +2,12 @@
 #
 # Table name: reservations
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  price      :float
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  pnr_id     :integer          not null
-#  user_id    :integer          not null
+#  pnr_id     :bigint           not null
+#  user_id    :bigint           not null
 #
 # Indexes
 #
@@ -16,8 +16,8 @@
 #
 # Foreign Keys
 #
-#  pnr_id   (pnr_id => pnrs.id)
-#  user_id  (user_id => users.id)
+#  fk_rails_...  (pnr_id => pnrs.id)
+#  fk_rails_...  (user_id => users.id)
 #
 class Reservation < ApplicationRecord
   belongs_to :user
