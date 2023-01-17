@@ -1,0 +1,60 @@
+version: '3.9'
+
+volumes:
+  postgresdata: { }
+  redisdata: { }
+  rails_cache: { }
+
+services:
+  database:
+    image: postgres:14
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+    env_file:
+      - .env
+
+  redis:
+    image: redis:6.2.6
+    command: redis-server --appendonly yes
+    volumes:
+      - redisdata:/data
+    env_file:
+      - .env
+
+  sidekiq:
+    build:
+      context: .
+      dockerfile: "docker/Dockerfile"
+      args:
+        - APP_USER_ID=${APP_USER_ID}
+        - PROJECT_DIRECTORY=${PROJECT_DIRECTORY:-/app}
+    command: bundle exec sidekiq
+    volumes:
+      - .:${PROJECT_DIRECTORY:-/app}
+      - rails_cache:${PROJECT_DIRECTORY:-/app}/tmp/cache
+    env_file:
+      - .env
+    depends_on:
+      - database
+      - redis
+    tty: true
+    entrypoint: [ "/home/flight-booking/entrypoint.sh" ]
+    stdin_open: true
+
+  app:
+    extends:
+      service: sidekiq
+    volumes:
+      - .:${PROJECT_DIRECTORY:-/app}
+      - rails_cache:${PROJECT_DIRECTORY:-/app}/tmp/cache
+      - ~/.ssh:/home/flight-booking/.ssh
+      - ~/.gitconfig:/home/flight-booking/.gitconfig
+    tmpfs:
+      - /tmp
+    ports:
+      - ${APP_PORT:-3000}:3000
+    depends_on:
+      - database
+      - redis
+      - sidekiq
+    command: [ "rails", "server", "-b", "0.0.0.0" ]

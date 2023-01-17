@@ -102,6 +102,7 @@ GEM
     code_analyzer (0.5.5)
       sexp_processor
     concurrent-ruby (1.1.10)
+    connection_pool (2.3.0)
     crass (1.0.6)
     date (3.3.3)
     debug (1.7.1)
@@ -208,6 +209,7 @@ GEM
     parser (3.2.0.0)
       ast (~> 2.4.1)
     path_expander (1.1.1)
+    pg (1.4.5)
     public_suffix (5.0.1)
     puma (5.6.5)
       nio4r (~> 2.0)
@@ -257,6 +259,8 @@ GEM
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
+    redis-client (0.12.1)
+      connection_pool
     regexp_parser (2.6.1)
     reline (0.3.2)
       io-console (~> 0.5)
@@ -319,6 +323,11 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     sexp_processor (4.16.1)
+    sidekiq (7.0.3)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.11.0)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -373,6 +382,7 @@ DEPENDENCIES
   jbuilder
   letter_opener_web (~> 2.0)
   overcommit (= 0.59.1)
+  pg (~> 1.1)
   puma (~> 5.0)
   pundit (= 2.3.0)
   rails (~> 7.0.2, >= 7.0.2.4)
@@ -382,6 +392,7 @@ DEPENDENCIES
   rubocop-rails (= 2.17.4)
   sassc-rails (= 2.1.2)
   selenium-webdriver
+  sidekiq (= 7.0.3)
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
