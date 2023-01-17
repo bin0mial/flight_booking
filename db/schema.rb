@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_14_233039) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_17_205551) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,6 +62,39 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_14_233039) do
     t.index ["aeroplane_type"], name: "index_aeroplanes_on_aeroplane_type", unique: true
   end
 
+  create_table "flights", force: :cascade do |t|
+    t.string "origin", null: false
+    t.string "destination", null: false
+    t.datetime "at", null: false
+    t.bigint "aeroplane_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["aeroplane_id"], name: "index_flights_on_aeroplane_id"
+  end
+
+  create_table "pnrs", force: :cascade do |t|
+    t.bigint "flight_id", null: false
+    t.bigint "aeroplane_class_id", null: false
+    t.string "pnr", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "aeroplane_class_seat_id", null: false
+    t.index ["aeroplane_class_id"], name: "index_pnrs_on_aeroplane_class_id"
+    t.index ["aeroplane_class_seat_id"], name: "index_pnrs_on_aeroplane_class_seat_id"
+    t.index ["flight_id", "pnr"], name: "index_pnrs_on_flight_id_and_pnr", unique: true
+    t.index ["flight_id"], name: "index_pnrs_on_flight_id"
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "pnr_id", null: false
+    t.float "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pnr_id"], name: "index_reservations_on_pnr_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -79,6 +112,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_14_233039) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.string "phone"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -86,4 +121,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_14_233039) do
 
   add_foreign_key "aeroplane_class_seats", "aeroplane_classes"
   add_foreign_key "aeroplane_class_seats", "aeroplanes"
+  add_foreign_key "flights", "aeroplanes"
+  add_foreign_key "pnrs", "aeroplane_class_seats"
+  add_foreign_key "pnrs", "aeroplane_classes"
+  add_foreign_key "pnrs", "flights"
+  add_foreign_key "reservations", "pnrs"
+  add_foreign_key "reservations", "users"
 end

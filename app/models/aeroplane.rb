@@ -2,7 +2,7 @@
 #
 # Table name: aeroplanes
 #
-#  id             :integer          not null, primary key
+#  id             :bigint           not null, primary key
 #  aeroplane_type :string           not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -14,6 +14,8 @@
 class Aeroplane < ApplicationRecord
   has_many :aeroplane_class_seats
   has_many :aeroplane_classes, through: :aeroplane_class_seats
+  has_many :flights
+  has_many :pnrs, through: :flights
 
   alias_attribute :name, :aeroplane_type
 end

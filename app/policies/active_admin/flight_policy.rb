@@ -1,4 +1,4 @@
-class ActiveAdmin::UserPolicy < ActiveAdmin::DefaultPolicy
+class ActiveAdmin::FlightPolicy < ActiveAdmin::DefaultPolicy
   def index?
     true
   end
