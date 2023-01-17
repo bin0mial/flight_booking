@@ -25,6 +25,7 @@
 class AeroplaneClassSeat < ApplicationRecord
   belongs_to :aeroplane
   belongs_to :aeroplane_class
+  has_many :pnrs
 
   validates :aeroplane_id, uniqueness: { scope: :aeroplane_class_id }
   validates :aeroplane_id, :aeroplane_class_id, :price, :row_numbers, :row_seats, presence: true

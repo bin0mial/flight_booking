@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_15_205344) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_17_182924) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,7 +78,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_15_205344) do
     t.string "pnr", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "aeroplane_class_seat_id", null: false
     t.index ["aeroplane_class_id"], name: "index_pnrs_on_aeroplane_class_id"
+    t.index ["aeroplane_class_seat_id"], name: "index_pnrs_on_aeroplane_class_seat_id"
     t.index ["flight_id", "pnr"], name: "index_pnrs_on_flight_id_and_pnr", unique: true
     t.index ["flight_id"], name: "index_pnrs_on_flight_id"
   end
@@ -118,6 +120,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_15_205344) do
   add_foreign_key "aeroplane_class_seats", "aeroplane_classes"
   add_foreign_key "aeroplane_class_seats", "aeroplanes"
   add_foreign_key "flights", "aeroplanes"
+  add_foreign_key "pnrs", "aeroplane_class_seats"
   add_foreign_key "pnrs", "aeroplane_classes"
   add_foreign_key "pnrs", "flights"
   add_foreign_key "reservations", "pnrs"
