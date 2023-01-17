@@ -48,7 +48,7 @@ services:
       - .:${PROJECT_DIRECTORY:-/app}
       - rails_cache:${PROJECT_DIRECTORY:-/app}/tmp/cache
       - ~/.ssh:/home/flight-booking/.ssh
-      - ~/.gitconfig:/home/flight-booking/.ssh
+      - ~/.gitconfig:/home/flight-booking/.gitconfig
     tmpfs:
       - /tmp
     ports:
