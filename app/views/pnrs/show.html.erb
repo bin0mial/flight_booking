@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+<div class="row">
+  <%= render @pnr %>
+  <%= render @pnr.flight %>
+  <% if @pnr.reservation.present? %>
+    <%= render @pnr.reservation %>
+  <% else %>
+    <div class="d-flex justify-content-center fw-bolder text-danger">
+      Current PNR has no reserved seat yet!
+    </div>
+    <% unless current_user %>
+      <div class="col-12">
+        Please login or sign up so you can reserve a seat!
+      </div>
+      <div class="col-6">
+        <%= link_to "Login", new_user_session_path, class: "btn btn-primary" %>
+      </div>
+      <div class="col-6">
+        <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-secondary" %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+

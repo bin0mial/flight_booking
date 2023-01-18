@@ -1,0 +1,9 @@
+<div class="col-12">
+  <h2>Personal Info:</h2>
+  <div class="row">
+    <% user.printable_attributes.each_pair do |attr, value| %>
+      <div class="col-6 fw-bolder"><%= attr %>:</div>
+      <div class="col-6"><%= value %></div>
+    <% end %>
+  </div>
+</div>

@@ -29,6 +29,8 @@ class Flight < ApplicationRecord
   # Delegations
   delegate :available, to: :pnrs, prefix: true
 
+  set_printable_attributes :origin, :destination, :at
+
   def create_pnrs
     CreateFlightPnrsJob.perform_later self
   end
