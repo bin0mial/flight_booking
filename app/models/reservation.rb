@@ -27,6 +27,8 @@ class Reservation < ApplicationRecord
 
   before_create :add_price_to_reservation
 
+  set_printable_attributes :price
+
   def check_pnr_not_taken
     errors.add(:pnr, :taken) if pnr.user.present?
   end

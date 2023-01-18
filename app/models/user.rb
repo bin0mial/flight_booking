@@ -39,5 +39,8 @@ class User < ApplicationRecord
   has_many :pnrs, through: :reservations
   has_many :flights, through: :pnrs
 
-  alias_attribute :name, :email
+  validates :name, presence: true
+
+  set_printable_attributes :name, :email
+
 end
