@@ -1,0 +1,9 @@
+<div class="col-12">
+  <h2>Flight Info:</h2>
+  <div class="row">
+    <% flight.printable_attributes.each_pair do |attr, value| %>
+      <div class="col-6 fw-bolder"><%= attr.capitalize %>:</div>
+      <div class="col-6"><%= value %></div>
+    <% end %>
+  </div>
+</div>

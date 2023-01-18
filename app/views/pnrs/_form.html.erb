@@ -1,0 +1,17 @@
+<%= form_with(model: pnr) do |form| %>
+  <% if pnr.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(pnr.errors.count, "error") %> prohibited this pnr from being saved:</h2>
+
+      <ul>
+        <% pnr.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
