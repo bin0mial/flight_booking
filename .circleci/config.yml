@@ -23,6 +23,8 @@ jobs:
   test:
     docker:
       - image: cimg/ruby:3.1.0
+    requires:
+      - build
     steps:
       - run:
           name: Test app
