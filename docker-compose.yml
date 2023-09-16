@@ -60,11 +60,23 @@ services:
     command: [ "rails", "server", "-b", "0.0.0.0" ]
 
   test: 
-    extends:
-      service: sidekiq
+    build:
+      context: .
+      dockerfile: "docker/Dockerfile"
+      args:
+        - APP_USER_ID=${APP_USER_ID}
+        - PROJECT_DIRECTORY=${PROJECT_DIRECTORY:-/app}
     volumes:
       - .:${PROJECT_DIRECTORY:-/app}
       - rails_cache:${PROJECT_DIRECTORY:-/app}/tmp/cache
       - ~/.ssh:/home/flight-booking/.ssh
       - ~/.gitconfig:/home/flight-booking/.gitconfig
+    env_file:
+      - .env
+    depends_on:
+      - database
+      - redis
+    tty: true
+    entrypoint: [ "/home/flight-booking/entrypoint.sh" ]
+    stdin_open: true
     command: [ "rspec"]
