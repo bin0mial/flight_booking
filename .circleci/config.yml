@@ -19,13 +19,13 @@ jobs:
           name: Install Docker Compose
           command: |
             set -x
-            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-            chmod +x /usr/local/bin/docker-compose
+            sudo curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+            sudo chmod +x /usr/local/bin/docker-compose
       - checkout
       - run: cp .env.example .env
       - run: sed  -i "/APP_USER_ID=/c\APP_USER_ID=$(id -u)" .env
-      - run: docker compose up -d
-      - run: docker compose exec app rspec
+      - run: docker-compose up -d
+      - run: docker-compose exec app rspec
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
