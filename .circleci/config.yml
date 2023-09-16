@@ -15,6 +15,7 @@ jobs:
       - image: cimg/base:2022.04
     executor: docker/docker
     steps:
+      - setup_remote_docker
       - checkout
       - run: cp .env.example .env
       - run: sed  -i "/APP_USER_ID=/c\APP_USER_ID=$(id -u)" .env
