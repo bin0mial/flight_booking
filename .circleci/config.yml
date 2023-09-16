@@ -15,6 +15,8 @@ jobs:
       - image: cimg/ruby:3.1.1
     executor: ruby/default
     steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
       - checkout
       - run:
           name: Which bundler?
