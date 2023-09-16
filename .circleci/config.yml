@@ -24,6 +24,9 @@ jobs:
     docker:
       - image: cimg/ruby:3.1.0
     steps:
+      - run: pwd
+      - run: ls
+      - run: cd flight_booking
       - run:
           name: Test app
           command: rspec
