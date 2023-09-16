@@ -20,16 +20,9 @@ jobs:
           name: Which bundler?
           command: bundle -v
       - ruby/install-deps
-  test:
-    docker:
-      - image: cimg/ruby:3.1.0
-    steps:
-      - run: pwd
       - run: ls
-      - run: cd flight_booking
-      - run:
-          name: Test app
-          command: rspec
+      - run: docker compose up
+      - run: docker compose exec app rspec
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
@@ -38,6 +31,3 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build
-      - test:
-          requires:
-            - build
