@@ -18,7 +18,7 @@ jobs:
       - checkout
       - run: cp .env.example .env
       - run: sed  -i "/APP_USER_ID=/c\APP_USER_ID=$(id -u)" .env
-      - run: docker-compose up test
+      - run: docker compose up test
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
