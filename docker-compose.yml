@@ -58,3 +58,13 @@ services:
       - redis
       - sidekiq
     command: [ "rails", "server", "-b", "0.0.0.0" ]
+
+  test: 
+    extends:
+      service: sidekiq
+    volumes:
+      - .:${PROJECT_DIRECTORY:-/app}
+      - rails_cache:${PROJECT_DIRECTORY:-/app}/tmp/cache
+      - ~/.ssh:/home/flight-booking/.ssh
+      - ~/.gitconfig:/home/flight-booking/.gitconfig
+    command: [ "rspec"]
