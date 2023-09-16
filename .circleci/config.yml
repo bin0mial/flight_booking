@@ -21,7 +21,8 @@ jobs:
           command: bundle -v
       - ruby/install-deps
       - run: ls
-      - run: docker compose up
+      - run: cp .env.example .env
+      - run: docker compose up -d
       - run: docker compose exec app rspec
 
 # Orchestrate jobs using workflows
